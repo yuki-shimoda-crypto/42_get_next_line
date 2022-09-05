@@ -1,5 +1,21 @@
-SRC:	get_next_line.c			\
-		get_next_line_utils.c
+SRC		=	get_next_line.c			\
+		=	get_next_line_utils.c
 
-CC:		CC
+OBJS	=	$(SRC:.c=.o)
 
+CC		=	gcc
+
+CFLAGS	=	-Wall -Wextra -Werror -D BUFFER_SIZE=42
+
+NAME	=	get_next_line.a
+
+all:		$(NAME)
+
+$(NAME):	$(OBJS)
+			ar rcs $(NAME) $(OBJS)
+
+clean:	
+			rm -f $(OBJS)
+
+fclean:		clean
+			rm -f $(NAME)

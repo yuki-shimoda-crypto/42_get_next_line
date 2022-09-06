@@ -124,7 +124,7 @@ char	*get_next_line(int fd)
 	{
 		if(!(line = (char *)malloc(sizeof(char) * 1)))
 			return (NULL);
-		*line = '\0';
+		line[0] = '\0';
 		over_flag = 0;
 	}
 	while (1)
@@ -135,7 +135,27 @@ char	*get_next_line(int fd)
 			return (NULL);
 		}
 		if (over_flag)
+		{
 			ptr = ft_strchr(line, '\n');
+			tmp = line;
+			if (ptr != NULL)
+			{
+				sub = ft_substr(tmp, 0, ptr - tmp);
+				line = ft_strjoin(tmp, sub);
+				if (ptr - tmp < BUFFER_SIZE)
+					over = ft_substr(tmp, ptr - tmp + 1, BUFFER_SIZE);
+				else
+					over = NULL;
+				free(sub);
+				free(tmp);
+				return (line);
+			}
+			else
+			{
+				line = ft_strjoin(tmp, buf);
+				over_flag = 0;
+			}
+		}
 		else
 		{
 			if (!(buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
@@ -159,22 +179,25 @@ char	*get_next_line(int fd)
 				return (line);
 			}
 			ptr = ft_strchr(buf, '\n');
-		}
-		tmp = line;
-		if (ptr != NULL)
-		{
-			sub = ft_substr(buf, 0, ptr - buf);
-			line = ft_strjoin(tmp, sub);
-			if (ptr - buf < BUFFER_SIZE)
-				over = ft_substr(buf, ptr - buf + 1, BUFFER_SIZE);
-			free(sub);
-			free(buf);
-			free(tmp);
-			return (line);
-		}
-		else
-		{
-			line = ft_strjoin(tmp, buf);
+			if (ptr != NULL)
+			{
+				tmp = line;
+				sub = ft_substr(buf, 0, ptr - buf);
+				line = ft_strjoin(tmp, sub);
+				if (ptr - buf < BUFFER_SIZE)
+					over = ft_substr(buf, ptr - buf + 1, BUFFER_SIZE);
+				else
+					over = NULL;
+				free(sub);
+				free(buf);
+				free(tmp);
+				return (line);
+			}
+			else
+			{
+				tmp = line;
+				line = ft_strjoin(tmp, buf);
+			}
 		}
 	}
 	return(line);
@@ -212,7 +235,7 @@ int main(void)
 
 	#if 1
 	fd = open("sample08.txt", 0);
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		line = get_next_line(fd);
 		printf("%s\n", line);

@@ -40,8 +40,36 @@ char	*get_next_line(int fd)
 	return(tmp);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #include <stdio.h>
 #include <fcntl.h>
+
+char	*ft_read(int fd)
+{
+	char	*tmp;
+	
+	read(fd, tmp, BUF_SIZE);
+	return(tmp);
+}
 
 int main(void)
 {
@@ -49,8 +77,10 @@ int main(void)
 	char	*line;
 
 	fd = open("sample01.txt", 0);
-	line = get_next_line(fd);
+
+	line = ft_read(fd);
 	// read(fd, line, BUF_SIZE);
+
 	printf("%s\n", line);
 	close(fd);
 

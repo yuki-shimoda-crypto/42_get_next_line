@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/04 12:07:52 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/06 20:56:08 by yshimoda         ###   ########.fr       */
+/*   Created: 2022/08/27 15:46:49 by yshimoda          #+#    #+#             */
+/*   Updated: 2022/09/06 17:39:31 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <ctype.h>
+#include <limits.h>
+#include <math.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
-# include <unistd.h>
-# include <stdlib.h>
-
-# include <stdio.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3
-# endif
-
-
-char	*get_next_line(int fd);
-#endif
+int main(int argc, char const *argv[], char **envp)
+{
+	for (size_t i = 0; envp[i] != NULL; i++)
+		printf("%s\n", envp[i]);
+	/* code */
+	return 0;
+}

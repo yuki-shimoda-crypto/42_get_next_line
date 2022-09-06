@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:07:52 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/05 15:39:21 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:39:01 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+#include <stdio.h>
 
 char	*get_next_line(int fd);
 

@@ -12,98 +12,6 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	size_t	i;
-	size_t	len_s1;
-	size_t	len_s2;
-	char	*ptr;
-
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	ptr = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len_s1 + len_s2)
-	{
-		if (i < len_s1)
-			ptr[i] = s1[i];
-		else
-			ptr[i] = s2[i - len_s1];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	size_t	len_s;
-	char	*ptr;
-
-	len_s = ft_strlen(s);
-	if (len_s > len)
-		ptr = (char *)malloc(sizeof(char) * (len + 1));
-	else
-		ptr = (char *)malloc(sizeof(char) * (len_s + 1));
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len && i + start < len_s)
-	{
-		ptr[i] = s[i + start];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
-// char	*ft_strjoin(char const *s1, char const *s2, char const *s3)
-// {
-// 	char	*ptr;
-
-// 	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) - ft_strlen(s3) + 1));
-// 	if (ptr == NULL)
-// 		return (NULL);
-// 	while (s2 != s3)
-// 	{
-// 		if (*s1)
-// 			*ptr++ = *s1++;
-// 		else
-// 			*ptr++ = *s2++;
-// 	}
-// 	*ptr = '\0';
-// 	return (ptr);
-// }
-
-char	*ft_strchr(const char *s, int c)
-{
-	size_t	i;
-	size_t	len_s;
-
-	len_s = ft_strlen(s);
-	i = 0;
-	while (i < len_s + 1)
-	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
-	}
-	return (NULL);
-}
-
-
-#include <string.h>
 char	*get_next_line(int fd)
 {
 	char		*line;
@@ -124,7 +32,7 @@ char	*get_next_line(int fd)
 	{
 		if(!(line = (char *)malloc(sizeof(char) * 1)))
 			return (NULL);
-		line[0] = '\0';
+		*line = '\0';
 		over_flag = 0;
 	}
 	while (1)
@@ -138,23 +46,19 @@ char	*get_next_line(int fd)
 		{
 			ptr = ft_strchr(line, '\n');
 			tmp = line;
+			over_flag = 0;
 			if (ptr != NULL)
 			{
-				sub = ft_substr(tmp, 0, ptr - tmp);
-				line = ft_strjoin(tmp, sub);
+				line = ft_substr(tmp, 0, ptr - tmp);
 				if (ptr - tmp < BUFFER_SIZE)
 					over = ft_substr(tmp, ptr - tmp + 1, BUFFER_SIZE);
 				else
 					over = NULL;
-				free(sub);
 				free(tmp);
 				return (line);
 			}
 			else
-			{
 				line = ft_strjoin(tmp, buf);
-				over_flag = 0;
-			}
 		}
 		else
 		{
@@ -235,7 +139,7 @@ int main(void)
 
 	#if 1
 	fd = open("sample08.txt", 0);
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		line = get_next_line(fd);
 		printf("%s\n", line);

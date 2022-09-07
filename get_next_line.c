@@ -107,57 +107,57 @@ char	*get_next_line(int fd)
 	return(line);
 }
 
-#include <stdio.h>
-#include <fcntl.h>
+// #include <stdio.h>
+// #include <fcntl.h>
 
-#if 0
-void	*malloc(size_t size)
-{
-	(void)size;
-	return (NULL);
-}
-#endif
+// #if 0
+// void	*malloc(size_t size)
+// {
+// 	(void)size;
+// 	return (NULL);
+// }
+// #endif
 
-# if 0
-ssize_t	read(int fildes, void *buf, size_t nbyte)
-{
-	return (-1);
-}
-#endif
+// # if 0
+// ssize_t	read(int fildes, void *buf, size_t nbyte)
+// {
+// 	return (-1);
+// }
+// #endif
 
-int main(void)
-{
-	int		fd;
-	char	*line;
+// int main(void)
+// {
+// 	int		fd;
+// 	char	*line;
 
-	#if 0
-	fd = open("sample01.txt", 0);
-	line = get_next_line(fd);
-	printf("%s\n", line);
-	close(fd);
-	#endif
+// 	#if 0
+// 	fd = open("sample01.txt", 0);
+// 	line = get_next_line(fd);
+// 	printf("%s\n", line);
+// 	close(fd);
+// 	#endif
 
-	#if 1
-	fd = open("sample08.txt", 0);
-	for (int i = 0; i < 7; i++)
-	{
-		line = get_next_line(fd);
-		printf("%s\n", line);
-	}
-	close(fd);
-	#endif
+// 	#if 1
+// 	fd = open("sample08.txt", 0);
+// 	for (int i = 0; i < 7; i++)
+// 	{
+// 		line = get_next_line(fd);
+// 		printf("%s\n", line);
+// 	}
+// 	close(fd);
+// 	#endif
 
-	#if 0
-	static char	*ptr;
-	printf("%s\n", ptr);
-	#endif
+// 	#if 0
+// 	static char	*ptr;
+// 	printf("%s\n", ptr);
+// 	#endif
 
-	#if 0
-	printf("%zu\n", strlen("a\n"));
-	printf("%s", ft_substr("a\n", 0, 2));
-	#endif
-	// line = (char *)malloc(sizeof(char) * 1);
-	// *line = '\0';
-	// printf("%s\n", line);
-	return (0);
-}
+// 	#if 0
+// 	printf("%zu\n", strlen("a\n"));
+// 	printf("%s", ft_substr("a\n", 0, 2));
+// 	#endif
+// 	// line = (char *)malloc(sizeof(char) * 1);
+// 	// *line = '\0';
+// 	// printf("%s\n", line);
+// 	return (0);
+// }

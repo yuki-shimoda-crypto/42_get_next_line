@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 14:53:17 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/05 23:21:47by yshimoda         ###   ########.fr       */
+/*   Created: 2022/09/08 12:41:19 by yshimoda          #+#    #+#             */
+/*   Updated: 2022/09/08 12:56:37 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#define SAFE_FREE(ptr) {free(ptr); ptr = NULL}
 
 void	ft_free(char *one, char *two, char *three, char *four)
 {
@@ -66,7 +67,7 @@ char	*get_next_line(int fd)
 	if (line == NULL)
 		return (NULL);
 	line[0] = '\0';
-	if (over)
+	if (over != NULL)
 		over_flag = 1;
 	else
 		over_flag = 0;
@@ -108,7 +109,6 @@ char	*get_next_line(int fd)
 		// 	return(line);
 		// }
 	}
-
 	return(line);
 }
 
@@ -136,7 +136,7 @@ int main(void)
 	char	c;
 	char	*line;
 
-	#if 1
+	#if 0
 	fd = open("sample01.txt", 0);
 	// line = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	// read(fd, line, BUFFER_SIZE);
@@ -147,9 +147,9 @@ int main(void)
 	// write(1, &c, 1);
 	#endif
 
-	#if 0
+	#if 1
 	fd = open("sample08.txt", 0);
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		line = get_next_line(fd);
 		printf("%s\n", line);

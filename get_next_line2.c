@@ -6,12 +6,12 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:41:19 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/08 12:56:37 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:14:20 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define SAFE_FREE(ptr) {free(ptr); ptr = NULL}
+#define SAFE_FREE(ptr) {free(ptr); ptr = NULL;}
 
 void	ft_free(char *one, char *two, char *three, char *four)
 {
@@ -36,17 +36,21 @@ int	ft_find_new_line(char **line, char **buf, char **over)
 	if (ptr == NULL)
 	{
 		*line = ft_strjoin(tmp, *buf);
-		// free(tmp);free(buf);
-		tmp = NULL;*buf = NULL;
+		SAFE_FREE(tmp);
+		// SAFE_FREE(buf);
+		// free(buf);
+		// tmp = NULL;*buf = NULL;
 		return (0);
 	}
 	else
 	{
-		sub = ft_substr(*buf, 0, ptr - *buf);
+		sub = ft_substr(*buf, 0, ptr - *buf + 0);
 		*line = ft_strjoin(tmp, sub);
 		*over = ft_substr(*buf, ptr - *buf + 2, BUFFER_SIZE);
-		// free(tmp);free(buf);free(sub);
-		tmp = NULL;buf = NULL;sub = NULL;
+		SAFE_FREE(tmp);
+		// free(buf);
+		SAFE_FREE(sub);
+		buf = NULL;
 		// return (line);
 		return(1);
 	}
@@ -67,15 +71,15 @@ char	*get_next_line(int fd)
 	if (line == NULL)
 		return (NULL);
 	line[0] = '\0';
-	if (over != NULL)
-		over_flag = 1;
-	else
-		over_flag = 0;
+	// if (over != NULL)
+	// 	over_flag = 1;
+	// else
+	// 	over_flag = 0;
 	while (1)
 	{
-		if (over_flag)
+		if (over != NULL)
 		{
-			over_flag = 0;
+			// over_flag = 0;
 			if (ft_find_new_line(&line, &over, &over))
 				return (line);
 		}
@@ -89,8 +93,11 @@ char	*get_next_line(int fd)
 				return (NULL);
 			else if (size < BUFFER_SIZE)
 				return (ft_strjoin(line, buf));
-			if (ft_find_new_line(&line, &buf, &over))
-				return (line);
+			else
+			{
+				if (ft_find_new_line(&line, &buf, &over))
+					return (line);
+			}
 		}
 		// ptr = ft_strchr(buf, '\n');
 		// if (ptr == NULL)

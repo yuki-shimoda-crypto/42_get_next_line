@@ -24,26 +24,26 @@ void	ft_free(char *one, char *two, char *three, char *four)
 	four = NULL;
 }
 
-int	ft_find_new_line(char *line, char *buf, char *over)
+int	ft_find_new_line(char **line, char **buf, char **over)
 {
 	char	*ptr;
 	char	*tmp;
 	char	*sub;
 
-	ptr = ft_strchr(buf, '\n');
-	tmp = line;
+	ptr = ft_strchr(*buf, '\n');
+	tmp = *line;
 	if (ptr == NULL)
 	{
-		line = ft_strjoin(tmp, buf);
+		*line = ft_strjoin(tmp, *buf);
 		// free(tmp);free(buf);
-		tmp = NULL;buf = NULL;
+		tmp = NULL;*buf = NULL;
 		return (0);
 	}
 	else
 	{
-		sub = ft_substr(buf, 0, ptr - buf);
-		line = ft_strjoin(tmp, sub);
-		over = ft_substr(buf, ptr - buf + 2, BUFFER_SIZE);
+		sub = ft_substr(*buf, 0, ptr - *buf);
+		*line = ft_strjoin(tmp, sub);
+		*over = ft_substr(*buf, ptr - *buf + 2, BUFFER_SIZE);
 		// free(tmp);free(buf);free(sub);
 		tmp = NULL;buf = NULL;sub = NULL;
 		// return (line);
@@ -75,7 +75,7 @@ char	*get_next_line(int fd)
 		if (over_flag)
 		{
 			over_flag = 0;
-			if (ft_find_new_line(line, over, over))
+			if (ft_find_new_line(&line, &over, &over))
 				return (line);
 		}
 		else
@@ -88,7 +88,7 @@ char	*get_next_line(int fd)
 				return (NULL);
 			else if (size < BUFFER_SIZE)
 				return (ft_strjoin(line, buf));
-			if (ft_find_new_line(line, buf, over))
+			if (ft_find_new_line(&line, &buf, &over))
 				return (line);
 		}
 		// ptr = ft_strchr(buf, '\n');

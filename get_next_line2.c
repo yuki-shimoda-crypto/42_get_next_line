@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:41:19 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/08 14:14:20 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:54:38 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,11 +156,11 @@ int main(void)
 
 	#if 1
 	fd = open("sample08.txt", 0);
-	for (int i = 0; i < 5; i++)
-	{
+	// for (int i = 0; i < 5; i++)
+	// {
 		line = get_next_line(fd);
-		printf("%s\n", line);
-	}
+		printf("%s", line);
+	// }
 	close(fd);
 	#endif
 

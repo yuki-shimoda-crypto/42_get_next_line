@@ -12,60 +12,101 @@
 
 #include "get_next_line.h"
 
-char	*ft_find_new_line(char *ptr, char *line, char *buf)
+void	ft_free(char *one, char *two, char *three, char *four)
 {
+	free(one);
+	free(two);
+	free(three);
+	free(four);
+	one = NULL;
+	two = NULL;
+	three = NULL;
+	four = NULL;
+}
 
+int	ft_find_new_line(char *line, char *buf, char *over)
+{
+	char	*ptr;
+	char	*tmp;
+	char	*sub;
+
+	ptr = ft_strchr(buf, '\n');
+	tmp = line;
+	if (ptr == NULL)
+	{
+		line = ft_strjoin(tmp, buf);
+		// free(tmp);free(buf);
+		tmp = NULL;buf = NULL;
+		return (0);
+	}
+	else
+	{
+		sub = ft_substr(buf, 0, ptr - buf);
+		line = ft_strjoin(tmp, sub);
+		over = ft_substr(buf, ptr - buf + 2, BUFFER_SIZE);
+		// free(tmp);free(buf);free(sub);
+		tmp = NULL;buf = NULL;sub = NULL;
+		// return (line);
+		return(1);
+	}
 }
 
 char	*get_next_line(int fd)
 {
 	char		*line;
 	char		*buf;
-	char		*tmp;
-	char		*ptr;
-	char		*sub;
+	// char		*tmp;
+	// char		*ptr;
+	// char		*sub;
 	static char	*over;	
 	int			over_flag;
 	ssize_t		size;
 
+	line = (char *)malloc(sizeof(char) * 1);
+	if (line == NULL)
+		return (NULL);
+	line[0] = '\0';
 	if (over)
-	{
-		line = over;
-		over = NULL;
-	}
+		over_flag = 1;
 	else
-	{
-		line = (char *)malloc(sizeof(char) * 1);
-		if (line == NULL)
-			return (NULL);
-		line[0] = '\0';
-	}
+		over_flag = 0;
 	while (1)
 	{
-		buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (buf == NULL)
-			return (NULL);
-		size = read(fd, buf, BUFFER_SIZE);
-		if (size < 0)
-			return (NULL);
-		else if (size < BUFFER_SIZE)
-			return (ft_strjoin(line, buf));
-		ptr = ft_strchr(buf, '\n');
-		if (ptr == NULL)
+		if (over_flag)
 		{
-			tmp = line;
-			line = ft_strjoin(tmp, buf);
-			free(tmp);free(buf);
+			over_flag = 0;
+			if (ft_find_new_line(line, over, over))
+				return (line);
 		}
 		else
 		{
-			sub = ft_substr(buf, 0, ptr - buf);
-			tmp = line;
-			line = ft_strjoin(tmp, sub);
-			over = ft_substr(buf, ptr - buf + 2, BUFFER_SIZE);
-			free(tmp);free(buf);free(sub);
-			return(line);
+			buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+			if (buf == NULL)
+				return (NULL);
+			size = read(fd, buf, BUFFER_SIZE);
+			if (size < 0)
+				return (NULL);
+			else if (size < BUFFER_SIZE)
+				return (ft_strjoin(line, buf));
+			if (ft_find_new_line(line, buf, over))
+				return (line);
 		}
+		// ptr = ft_strchr(buf, '\n');
+		// if (ptr == NULL)
+		// {
+		// 	tmp = line;
+		// 	line = ft_strjoin(tmp, buf);
+		// 	free(tmp);free(buf);
+		// }
+		// else
+		// {
+		// 	sub = ft_substr(buf, 0, ptr - buf);
+		// 	tmp = line;
+		// 	line = ft_strjoin(tmp, sub);
+		// 	over = ft_substr(buf, ptr - buf + 2, BUFFER_SIZE);
+		// 	free(tmp);free(buf);free(sub);
+		// 	return(line);
+		// }
 	}
 
 	return(line);
@@ -95,7 +136,7 @@ int main(void)
 	char	c;
 	char	*line;
 
-	#if 0
+	#if 1
 	fd = open("sample01.txt", 0);
 	// line = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	// read(fd, line, BUFFER_SIZE);
@@ -106,7 +147,7 @@ int main(void)
 	// write(1, &c, 1);
 	#endif
 
-	#if 1
+	#if 0
 	fd = open("sample08.txt", 0);
 	for (int i = 0; i < 7; i++)
 	{

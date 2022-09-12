@@ -6,20 +6,51 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:41:19 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/08 20:48:56 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/08 22:16:03by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #define SAFE_FREE(ptr) {free(ptr); ptr = NULL;}
 
-char	*ft_join_free_a(char *a, char *b)
+char	*ft_make_over(char *line, char *over)
 {
+	size_t	i;
+	size_t	j;
 	char	*tmp;
 
-	tmp = ft_strjoin(a, b);
-	SAFE_FREE(a);
-	return (tmp);
+	if (line == NULL || over == NULL)
+		return (NULL);
+	i = ft_strlen(line);
+	j = ft_strlen(over);
+	
+}
+
+char	*ft_make_line(char *over)
+{
+	char	*ptr;
+	char	*line;
+	size_t	i;
+	
+	if (over == NULL)
+		return (NULL);
+	ptr = ft_strchr(over, '\n');
+	i = 0;
+	while (over[i] != '\0' && over[i] != '\n')
+		i++;
+	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (line == NULL)
+		return (NULL);
+	i = 0;
+	while (over[i] != '\0' && over[i] != '\n')
+	{
+		line[i] = over[i];
+		i++;
+	}
+	line[i] = '\n';
+	line[i + 1] = '\0';
+	return (line);
+	
 }
 
 char	*ft_read_line(int fd, char *over)
@@ -66,7 +97,8 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	over = ft_read_line(fd, over);
-	line = ft_line
+	line = ft_make_line(over);
+	over = ft_make_over(line, over);
 	return (line);
 }
 

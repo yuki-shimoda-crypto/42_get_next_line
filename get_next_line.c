@@ -168,11 +168,88 @@ char	*ft_get_line(char *over)
 	return (s);
 }
 
-char	*ft_readline(int fd, char *over)
+// char	*ft_readline(int fd, char *over)
+// {
+// 	char	buf[BUFFER_SIZE + 1];
+// 	char	*tmp;
+// 	ssize_t	size;
+
+// 	if (!over)
+// 	{
+// 		over = (char *)malloc(sizeof(char) * 1);
+// 		if (!over)
+// 			return (NULL);
+// 		over[0] = '\0';
+// 	}
+// 	size = 1;
+// 	tmp = NULL;
+// 	char	*ptr = NULL;
+// 	while (1)
+// 	{
+// 		ptr = ft_strchr(over, '\n');
+// 		if (ptr)
+// 			break;
+// 		size = read(fd, buf, BUFFER_SIZE);
+// 		if (size < 0)
+// 		{
+// 			free(over);
+// 			free(buf);
+// 			return (NULL);
+// 		}
+// 		if (size == 0)
+// 			break;
+// 		buf[size] = '\0';
+// 		tmp = ft_strjoin(over, buf);
+// 		free(over);
+// 		over = tmp;
+// 	}
+// 	ptr = ft_strchr(over, '\n');
+// 	char	*ret;
+// 	ret = ft_strndup(over, ptr - over + 1);
+// 	over = ft_strdup(over + (ptr - over + 1))
+// 	// while (size > 0 && !ft_strchr(over, '\n'))
+// 	// {
+// 	// 	size = read(fd, buf, BUFFER_SIZE);
+// 	// 	if (size <= 0)
+// 	// 	{
+// 	// 		free(over);
+// 	// 		free(buf);
+// 	// 		return (NULL);
+// 	// 	}
+// 	// 	buf[size] = '\0';
+// 	// 	tmp = ft_strjoin(over, buf);
+// 	// 	free(over);
+// 	// 	over = tmp;
+// 	// }
+// 	free(buf);
+// 	return (over);
+// }
+
+// char	*get_next_line(int fd)
+// {
+// 	static char	*over;
+// 	char		*line;
+
+// 	// if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+// 	if (fd < 0 || BUFFER_SIZE <= 0)
+// 		return (NULL);
+// 	over = ft_readline(fd, over);
+// 	if (!over)
+// 		return (NULL);
+// 	line = ft_get_line(over);
+// 	// printf("%s", line);
+// 	over = ft_get_next(over);
+// 	return (line);
+// }
+
+char	*get_next_line(int fd)
 {
-	char	buf[BUFFER_SIZE + 1];
-	char	*tmp;
-	ssize_t	size;
+	ssize_t		size;
+	static char	*over;
+	char		*ret;
+	char		*ptr;
+	char		buf[BUFFER_SIZE + 1];
+	char		*tmp;
 
 	if (!over)
 	{
@@ -181,9 +258,8 @@ char	*ft_readline(int fd, char *over)
 			return (NULL);
 		over[0] = '\0';
 	}
-	size = 1;
-	tmp = NULL;
-	char	*ptr = NULL;
+	// tmp = NULL;
+	// ptr = NULL;
 	while (1)
 	{
 		ptr = ft_strchr(over, '\n');
@@ -193,7 +269,6 @@ char	*ft_readline(int fd, char *over)
 		if (size < 0)
 		{
 			free(over);
-			free(buf);
 			return (NULL);
 		}
 		if (size == 0)
@@ -204,42 +279,10 @@ char	*ft_readline(int fd, char *over)
 		over = tmp;
 	}
 	ptr = ft_strchr(over, '\n');
-	char	*ret;
-	ret = ft_strndup(over, ptr - over + 1);
-	over = ft_strdup(over + (ptr - over + 1))
-	// while (size > 0 && !ft_strchr(over, '\n'))
-	// {
-	// 	size = read(fd, buf, BUFFER_SIZE);
-	// 	if (size <= 0)
-	// 	{
-	// 		free(over);
-	// 		free(buf);
-	// 		return (NULL);
-	// 	}
-	// 	buf[size] = '\0';
-	// 	tmp = ft_strjoin(over, buf);
-	// 	free(over);
-	// 	over = tmp;
-	// }
-	free(buf);
-	return (over);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	*over;
-	char		*line;
-
-	// if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	over = ft_readline(fd, over);
-	if (!over)
-		return (NULL);
-	line = ft_get_line(over);
-	// printf("%s", line);
-	over = ft_get_next(over);
-	return (line);
+	ret = ft_substr(over, 0, ptr - over + 1);
+	// ret = ft_strndup(over, ptr - over + 1);
+	over = ft_strdup(over + (ptr - over + 1));
+	return (ret);
 }
 #endif
 

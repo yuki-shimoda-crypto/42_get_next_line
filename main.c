@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:46:49 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/14 21:41:30 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/14 22:18:02 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(void)
 		if (!line)
 			break;
 	}
-	// for (size_t i = 0; i < 1; i++)
+	// for (size_t i = 0; i < 2; i++)
 	// {
 	// 	line = get_next_line(fd);
 	// 	printf("%s", line);

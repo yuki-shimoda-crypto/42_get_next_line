@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 05:15:17 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:30:16 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_make_ret_over(char **ptr, char **over, char **ret)
 {
 	char	*tmp;
 
-	*ptr = ft_strchr(*over, '\n');	
+	*ptr = ft_strchr(*over, '\n');
 	if (!*ptr)
 	{
 		if (!ft_strlen(*over))
@@ -47,15 +47,15 @@ char	*ft_make_ret_over(char **ptr, char **over, char **ret)
 
 char	*ft_readline(int fd, char **over, char **ptr)
 {
-	ssize_t		size;
-	char		*tmp;
-	char		buf[BUFFER_SIZE + 1ul];
+	ssize_t	size;
+	char	*tmp;
+	char	buf[BUFFER_SIZE + 1ul];
 
 	while (1)
 	{
 		*ptr = ft_strchr(*over, '\n');
 		if (*ptr)
-			break;
+			break ;
 		size = read(fd, buf, BUFFER_SIZE);
 		if (size < 0)
 		{
@@ -64,7 +64,7 @@ char	*ft_readline(int fd, char **over, char **ptr)
 		}
 		buf[size] = '\0';
 		if (size == 0)
-			break;
+			break ;
 		tmp = ft_strjoin(*over, buf);
 		ft_free(over);
 		*over = tmp;
@@ -102,7 +102,7 @@ void	*malloc(size_t size)
 }
 #endif
 
-# if 0
+#if 0
 ssize_t	read(int fildes, void *buf, size_t nbyte)
 {
 	return (-1);
@@ -124,7 +124,7 @@ ssize_t	read(int fildes, void *buf, size_t nbyte)
 // 		line = get_next_line(fd);
 // 		printf("%s", line);
 // 		if (!line)
-// 			break;
+// 			break ;
 // 	}
 // 	close(fd);
 // 	#endif
@@ -153,7 +153,7 @@ ssize_t	read(int fildes, void *buf, size_t nbyte)
 // 	// {
 // 	// 	ptr = ft_strchr(over, '\n');
 // 	// 	if (ptr)
-// 	// 		break;
+// 	// 		break ;
 // 	// 	size = read(fd, buf, BUFFER_SIZE);
 // 	// 	if (size < 0)
 // 	// 	{
@@ -162,14 +162,14 @@ ssize_t	read(int fildes, void *buf, size_t nbyte)
 // 	// 	}
 // 	// 	buf[size] = '\0';
 // 	// 	if (size == 0)
-// 	// 		break;
+// 	// 		break ;
 // 	// 	tmp = ft_strjoin(over, buf);
 // 	// 	ft_free(&over);
 // 	// 	over = tmp;
 // 	// }
 
 // 	ret = ft_make_ret_over(&ptr, &over, &ret);
-// 	// ptr = ft_strchr(over, '\n');	
+// 	// ptr = ft_strchr(over, '\n');
 // 	// if (!ptr)
 // 	// {
 // 	// 	if (!ft_strlen(over))

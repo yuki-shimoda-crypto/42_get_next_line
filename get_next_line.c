@@ -6,11 +6,12 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 03:47:51 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 04:26:14 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 void	ft_free(char **ptr)
 {
@@ -54,7 +55,7 @@ char	*get_next_line(int fd)
 		ft_free(&over);
 		over = tmp;
 	}
-	ptr = ft_strchr(over, '\n');
+	ptr = ft_strchr(over, '\n');	
 	if (!ptr)
 	{
 		if (!ft_strlen(over))

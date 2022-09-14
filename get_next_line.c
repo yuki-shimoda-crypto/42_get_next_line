@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 05:30:16 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:46:23 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,11 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!over)
 	{
-		over = (char *)malloc(sizeof(char) * 1);
+		over = ft_strdup("");
+		// over = (char *)malloc(sizeof(char) * 1);
 		if (!over)
 			return (NULL);
-		over[0] = '\0';
+		// over[0] = '\0';
 	}
 	over = ft_readline(fd, &over, &ptr);
 	if (!over)

@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 06:11:40 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 08:00:49 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static char	*ft_make_ret_over(char **ptr, char **over, char **ret)
 		}
 		*ret = ft_strdup(*over);
 		ft_free(over);
-		*over = NULL;
 	}
 	else
 	{

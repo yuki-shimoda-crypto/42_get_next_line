@@ -6,13 +6,28 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:46:49 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 04:29:06 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 06:06:16 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <fcntl.h>
 #include "get_next_line.h"
+
+#if 0
+void	*malloc(size_t size)
+{
+	(void)size;
+	return (NULL);
+}
+#endif
+
+#if 0
+ssize_t	read(int fildes, void *buf, size_t nbyte)
+{
+	return (-1);
+}
+#endif
 
 int main(void)
 {

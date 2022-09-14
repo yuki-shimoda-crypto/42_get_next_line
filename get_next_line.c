@@ -63,6 +63,7 @@ char	*ft_get_line(char *over)
 char	*ft_readline(int fd, char *over)
 {
 	char	*buf;
+	char	*tmp;
 	ssize_t	size;
 
 	if (!over)
@@ -79,16 +80,25 @@ char	*ft_readline(int fd, char *over)
 		return (NULL);
 	}
 	size = 1;
-	while (size > 0 && !ft_strchr(over, '\n'))
+	while (size > 0)
 	{
 		size = read(fd, buf, BUFFER_SIZE);
+		if (ft_strchr(over, '\n'))
+		{
+			break;
+		}
 		if (size <= 0)
 		{
+			free(over);
 			free(buf);
 			return (NULL);
 		}
-		over = ft_strjoin(over, buf);
+		buf[size] = '\0';
+		tmp = ft_strjoin(over, buf);
+		free(over);
+		over = tmp;
 	}
+	printf("%s\n", over);
 	free(buf);
 	return (over);
 }
@@ -110,8 +120,6 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-#include <stdio.h>
-#include <fcntl.h>
 
 #if 0
 void	*malloc(size_t size)
@@ -128,43 +136,59 @@ ssize_t	read(int fildes, void *buf, size_t nbyte)
 }
 #endif
 
-int main(void)
+// #include <stdio.h>
+// #include <fcntl.h>
+// int main(void)
+// {
+// 	int		fd;
+// 	char	*line;
+
+// 	#if 1
+// 	fd = open("41_no_nl", 0);
+// 	while (1)
+// 	{
+// 		line = get_next_line(fd);
+// 		printf("%s", line);
+// 		if (!line)
+// 			break;
+// 	}
+// 	// for (size_t i = 0; i < 1; i++)
+// 	// {
+// 	// 	line = get_next_line(fd);
+// 	// 	printf("%s", line);
+// 	// }
+// 	close(fd);
+// 	#endif
+// 	return (0);
+// }
+
+
+#include "get_next_line.h"
+#include <fcntl.h>
+
+int    main(int argc, char **argv)
 {
-	int		fd;
-	char	c;
-	char	*line;
+    int fd1;
+    char *txt;
 
-	#if 1
-	fd = open("sample08.txt", 0);
-	for (size_t i = 0; i < 8; i++)
-	{
-		line = get_next_line(fd);
-		printf("%s", line);
-	}
-	close(fd);
-	#endif
-
-	#if 0
-	fd = open("sample08.txt", 0);
-	// for (int i = 0; i < 5; i++)
-	// {
-		line = get_next_line(fd);
-		printf("%s", line);
-	// }
-	close(fd);
-	#endif
-
-	#if 0
-	static char	*ptr;
-	printf("%s\n", ptr);
-	#endif
-
-	#if 0
-	printf("%zu\n", strlen("a\n"));
-	printf("%s", ft_substr("a\n", 0, 2));
-	#endif
-	// line = (char *)malloc(sizeof(char) * 1);
-	// *line = '\0';
-	// printf("%s\n", line);
-	return (0);
+    if(argc < 2)
+        return (1);
+    fd1 = open(argv[1], O_RDONLY);
+    txt = get_next_line(fd1); 
+    printf("[Return Line:] %s",txt);
+    free(txt);
+    while (txt)
+    {
+        txt = get_next_line(fd1);
+        if(!txt)
+        {
+            printf("\n");
+            break;
+        }
+        printf("[Return Line:] %s",txt);
+        free(txt);
+    }
+    close(fd1);
+    system("leaks a.out");
+    return (0);
 }

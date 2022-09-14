@@ -6,27 +6,27 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 06:05:40 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 06:11:40 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-void	ft_free(char **ptr)
+static void	ft_free(char **ptr)
 {
 	free(*ptr);
 	*ptr = NULL;
 }
 
-char	*ft_error(char **buf, char **over)
+static char	*ft_error(char **buf, char **over)
 {
 	ft_free(buf);
 	ft_free(over);
 	return (NULL);
 }
 
-char	*ft_make_ret_over(char **ptr, char **over, char **ret)
+static char	*ft_make_ret_over(char **ptr, char **over, char **ret)
 {
 	char	*tmp;
 
@@ -52,7 +52,7 @@ char	*ft_make_ret_over(char **ptr, char **over, char **ret)
 	return (*ret);
 }
 
-char	*ft_readline(int fd, char **over, char **ptr)
+static char	*ft_readline(int fd, char **over, char **ptr)
 {
 	ssize_t	size;
 	char	*tmp;
@@ -89,11 +89,9 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!over)
-	{
 		over = ft_strdup("");
-		if (!over)
-			return (NULL);
-	}
+	if (!over)
+		return (NULL);
 	over = ft_readline(fd, &over, &ptr);
 	if (!over)
 		return (NULL);

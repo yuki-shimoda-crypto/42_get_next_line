@@ -10,6 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
+/*   Updated: 2022/09/14 22:24:08 by yshimoda         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "get_next_line.h"
+
 # if 0
 #include "get_next_line.h"
 
@@ -117,7 +131,7 @@ char	*get_next_line(int fd)
 }
 #endif
 
-#if 1
+#if 0
 #include "get_next_line.h"
 
 char	*ft_get_next(char *over)
@@ -241,6 +255,8 @@ char	*ft_get_line(char *over)
 // 	over = ft_get_next(over);
 // 	return (line);
 // }
+#endif
+
 
 char	*get_next_line(int fd)
 {
@@ -251,6 +267,8 @@ char	*get_next_line(int fd)
 	char		buf[BUFFER_SIZE + 1];
 	char		*tmp;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	if (!over)
 	{
 		over = (char *)malloc(sizeof(char) * 1);
@@ -271,26 +289,35 @@ char	*get_next_line(int fd)
 			free(over);
 			return (NULL);
 		}
+		buf[size] = '\0';
 		if (size == 0)
 			break;
-		buf[size] = '\0';
 		tmp = ft_strjoin(over, buf);
 		free(over);
 		over = tmp;
 	}
 	ptr = ft_strchr(over, '\n');
 	if (!ptr)
+	{
+		if (!ft_strlen(over))
+		{
+			free(over);
+			return (NULL);
+		}
 		ret = ft_strdup(over);
+		free(over);
+		over = NULL;
+	}
 	else
 	{
 		ret = ft_substr(over, 0, ptr - over + 1);
 		// ret = ft_strndup(over, ptr - over + 1);
-		over = ft_strdup(over + (ptr - over + 1));
+		tmp = ft_strdup(over + (ptr - over + 1));
+		free(over);
+		over = tmp;
 	}
 	return (ret);
 }
-#endif
-
 
 #if 0
 void	*malloc(size_t size)

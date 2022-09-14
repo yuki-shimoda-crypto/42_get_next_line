@@ -71,6 +71,7 @@ char	*ft_readline(int fd, char *over)
 		}
 		if (size == 0)
 			break;
+		buf[size] = '\0';
 		tmp = ft_strjoin(over, buf);
 		free(over);
 		over = tmp;
@@ -100,4 +101,30 @@ char	*get_next_line(int fd)
 	line = ft_get_line(over);
 	over = ft_get_next(over);
 	return (line);
+}
+
+#include <stdio.h>
+#include <fcntl.h>
+int main(void)
+{
+	int		fd;
+	char	*line;
+
+	#if 1
+	fd = open("41_no_nl", 0);
+	// while (1)
+	// {
+	// 	line = get_next_line(fd);
+	// 	printf("%s", line);
+	// 	if (!line)
+	// 		break;
+	// }
+	for (size_t i = 0; i < 1; i++)
+	{
+		line = get_next_line(fd);
+		printf("%s", line);
+	}
+	close(fd);
+	#endif
+	return (0);
 }

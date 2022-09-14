@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/08 17:30:41 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/14 21:02:15 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,66 +60,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	ptr[i] = '\0';
-	return (ptr);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	size_t	len_s;
-	char	*ptr;
-
-	len_s = ft_strlen(s);
-	if (len_s > len)
-		ptr = (char *)malloc(sizeof(char) * (len + 1));
-	else
-		ptr = (char *)malloc(sizeof(char) * (len_s + 1));
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len && i + start < len_s)
-	{
-		ptr[i] = s[i + start];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t			i;
-	unsigned char	*ptr;
-	unsigned char	tmp;
-
-	ptr = (unsigned char *)b;
-	tmp = (unsigned char)c;
-	i = 0;
-	while (i < len)
-		ptr[i++] = tmp;
-	return (b);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
-
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-
-	if (count == 0 || size == 0)
-	{
-		count = 1;
-		size = 1;
-	}
-	if (SIZE_MAX / count < size)
-		return (NULL);
-	ptr = (void *)malloc(count * size);
-	if (ptr == NULL)
-		return (NULL);
-	ft_bzero(ptr, count * size);
 	return (ptr);
 }

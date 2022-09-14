@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:46:49 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/08 17:52:36 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/14 21:41:30 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,23 @@
 int main(void)
 {
 	int		fd;
-	char	c;
 	char	*line;
 
+	#if 1
 	fd = open("sample08.txt", 0);
-	// for (size_t i = 0; i < 3; i++)
-	// {
+	while (1)
+	{
 		line = get_next_line(fd);
 		printf("%s", line);
+		if (!line)
+			break;
+	}
+	// for (size_t i = 0; i < 1; i++)
+	// {
+	// 	line = get_next_line(fd);
+	// 	printf("%s", line);
 	// }
 	close(fd);
+	#endif
 	return (0);
 }
-
-// #include <ctype.h>
-// #include <limits.h>
-// #include <math.h>
-// #include <stdbool.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-// #include <unistd.h>
-
-// int main(int argc, char const *argv[], char **envp)
-// {
-// 	for (size_t i = 0; envp[i] != NULL; i++)
-// 		printf("%s\n", envp[i]);
-// 	/* code */
-// 	return 0;
-// }

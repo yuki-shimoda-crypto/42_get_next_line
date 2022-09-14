@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:46:49 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 06:10:26 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 06:27:30 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,41 +48,3 @@ int main(void)
 	close(fd);
 	return (0);
 }
-
-
-// int main(void)
-// {
-// 	char	ptr[] = "";
-	
-// 	ft_strdup("\0");
-// 	return (0);
-// }
-// #include "get_next_line.h"
-// #include <fcntl.h>
-
-// int    main(int argc, char **argv)
-// {
-//     int fd1;
-//     char *txt;
-
-//     if(argc < 2)
-//         return (1);
-//     fd1 = open(argv[1], O_RDONLY);
-//     txt = get_next_line(fd1); 
-//     printf("[Return Line:] %s",txt);
-//     free(txt);
-//     while (txt)
-//     {
-//         txt = get_next_line(fd1);
-//         if(!txt)
-//         {
-//             printf("\n");
-//             break;
-//         }
-//         printf("[Return Line:] %s",txt);
-//         free(txt);
-//     }
-//     close(fd1);
-//     system("leaks a.out");
-//     return (0);
-// }

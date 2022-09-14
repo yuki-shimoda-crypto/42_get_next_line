@@ -6,13 +6,18 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 05:46:23 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 05:57:17 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
+void	ft_error(char **ptr, char **over)
+{
+	
+
+}
 void	ft_free(char **ptr)
 {
 	free(*ptr);
@@ -45,12 +50,16 @@ char	*ft_make_ret_over(char **ptr, char **over, char **ret)
 	return (*ret);
 }
 
+
 char	*ft_readline(int fd, char **over, char **ptr)
 {
 	ssize_t	size;
 	char	*tmp;
-	char	buf[BUFFER_SIZE + 1ul];
+	char	*buf;
 
+	buf = (char *)malloc(BUFFER_SIZE + 1ul);
+	if (buf == NULL)
+		return (NULL);
 	while (1)
 	{
 		*ptr = ft_strchr(*over, '\n');
@@ -59,6 +68,7 @@ char	*ft_readline(int fd, char **over, char **ptr)
 		size = read(fd, buf, BUFFER_SIZE);
 		if (size < 0)
 		{
+			ft_free(&buf);
 			ft_free(over);
 			return (NULL);
 		}
@@ -69,6 +79,7 @@ char	*ft_readline(int fd, char **over, char **ptr)
 		ft_free(over);
 		*over = tmp;
 	}
+	ft_free(&buf);
 	return (*over);
 }
 

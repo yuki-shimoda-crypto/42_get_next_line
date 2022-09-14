@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/14 22:24:08 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:25:18 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strchr(const char *s, int c)
 {
+	while (*s)
+	{
+		if (*s == (char)c)
+			return (char *)s;
+		s++;
+	}
+	return (NULL);
+}
+/*
+char	*ft_strchr(const char *s, int c)
+{
 	size_t	i;
 	size_t	len_s;
 
@@ -36,10 +47,25 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	return (NULL);
-}
+}*/
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
+	char	*ptr;
+	char	*save;
+	
+	if (!s1 || !s2)
+		return NULL;
+	ptr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	save = ptr;
+	while (*s1)	
+		*ptr++ = *s1++;
+	while (*s2)	
+		*ptr++ = *s2++;
+	*ptr = 0;
+	return save;
+}
+/*	
 	size_t	i;
 	size_t	len_s1;
 	size_t	len_s2;
@@ -61,7 +87,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	ptr[i] = '\0';
 	return (ptr);
-}
+}*/
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -85,7 +111,21 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ptr[i] = '\0';
 	return (ptr);
 }
-
+char	*ft_strdup(const char *s1)
+{
+	char	*ptr;
+	char	*save;
+	
+	if (!s1)
+		return NULL;
+	ptr = malloc(ft_strlen(s1) + 1);
+	save = ptr;
+	while (*s1)	
+		*ptr++ = *s1++;
+	*ptr = 0;
+	return save;
+}
+/*
 char	*ft_strdup(const char *s1)
 {
 	size_t	i;
@@ -102,4 +142,4 @@ char	*ft_strdup(const char *s1)
 	}
 	ptr[i] = '\0';
 	return (ptr);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 12:07:52 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 04:30:59 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 07:57:40 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 300
+#  define BUFFER_SIZE 42
 # endif
-
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);

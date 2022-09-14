@@ -5,7 +5,7 @@ OBJS	=	$(SRC:.c=.o)
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -D BUFFER_SIZE=42 
+CFLAGS	=	-Wall -Wextra -Werror -D BUFFER_SIZE=10000000
 
 NAME	=	get_next_line.a
 

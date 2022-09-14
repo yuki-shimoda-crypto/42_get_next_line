@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:46:49 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 03:03:59 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 04:29:06 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,28 @@ int main(void)
 {
 	int		fd;
 	char	*line;
+	char	test[BUFFER_SIZE];
 
-	#if 1
-	fd = open("sample08.txt", 0);
-	// fd = open("41_no_nl", 0);
-	while (1)
-	{
-		line = get_next_line(fd);
-		printf("%s", line);
-		if (!line)
-			break;
-		free(line);
-	}
-	// for (size_t i = 0; i < 2; i++)
+	*test = 0;
+	// #if 1
+	// fd = open("sample08.txt", 0);
+	// // fd = open("a", O_RDONLY);
+	// // fd = open("41_no_nl", 0);
+	// while (1)
 	// {
 	// 	line = get_next_line(fd);
 	// 	printf("%s", line);
+	// 	if (!line)
+	// 		break;
+	// 	free(line);
 	// }
-	close(fd);
-	#endif
+	// // for (size_t i = 0; i < 2; i++)
+	// // {
+	// // 	line = get_next_line(fd);
+	// // 	printf("%s", line);
+	// // }
+	// // close(fd);
+	// #endif
 	return (0);
 }
 

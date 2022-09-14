@@ -279,9 +279,14 @@ char	*get_next_line(int fd)
 		over = tmp;
 	}
 	ptr = ft_strchr(over, '\n');
-	ret = ft_substr(over, 0, ptr - over + 1);
-	// ret = ft_strndup(over, ptr - over + 1);
-	over = ft_strdup(over + (ptr - over + 1));
+	if (!ptr)
+		ret = ft_strdup(over);
+	else
+	{
+		ret = ft_substr(over, 0, ptr - over + 1);
+		// ret = ft_strndup(over, ptr - over + 1);
+		over = ft_strdup(over + (ptr - over + 1));
+	}
 	return (ret);
 }
 #endif

@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/14 22:12:33 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/14 22:24:08 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*ft_strdup(const char *s1)
 {
 	size_t	i;
 	char	*ptr;
-
+	
 	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (ptr == NULL)
 		return (NULL);

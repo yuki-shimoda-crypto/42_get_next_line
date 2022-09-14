@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:46:49 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 06:27:30 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 07:15:15 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int main(void)
 {
 	int		fd;
 	char	*line;
-	char	test[BUFFER_SIZE];
 
-	*test = 0;
 	fd = open("sample08.txt", O_RDONLY);
 	while (1)
 	{

@@ -6,11 +6,17 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 02:49:04 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 03:47:51 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	ft_free(char **ptr)
+{
+	free(*ptr);
+	*ptr = NULL;
+}
 
 char	*get_next_line(int fd)
 {
@@ -38,14 +44,14 @@ char	*get_next_line(int fd)
 		size = read(fd, buf, BUFFER_SIZE);
 		if (size < 0)
 		{
-			free(over);
+			ft_free(&over);
 			return (NULL);
 		}
 		buf[size] = '\0';
 		if (size == 0)
 			break;
 		tmp = ft_strjoin(over, buf);
-		free(over);
+		ft_free(&over);
 		over = tmp;
 	}
 	ptr = ft_strchr(over, '\n');
@@ -53,11 +59,11 @@ char	*get_next_line(int fd)
 	{
 		if (!ft_strlen(over))
 		{
-			free(over);
+			ft_free(&over);
 			return (NULL);
 		}
 		ret = ft_strdup(over);
-		free(over);
+		ft_free(&over);
 		over = NULL;
 	}
 	else
@@ -65,7 +71,7 @@ char	*get_next_line(int fd)
 		ret = ft_substr(over, 0, ptr - over + 1);
 		// ret = ft_strndup(over, ptr - over + 1);
 		tmp = ft_strdup(over + (ptr - over + 1));
-		free(over);
+		ft_free(&over);
 		over = tmp;
 	}
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/14 23:25:18 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 02:52:55 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,6 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return (NULL);
 }
-/*
-char	*ft_strchr(const char *s, int c)
-{
-	size_t	i;
-	size_t	len_s;
-
-	len_s = ft_strlen(s);
-	i = 0;
-	while (i < len_s + 1)
-	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
-	}
-	return (NULL);
-}*/
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -55,39 +39,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*save;
 	
 	if (!s1 || !s2)
-		return NULL;
-	ptr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+		return (NULL);
+	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	save = ptr;
 	while (*s1)	
 		*ptr++ = *s1++;
 	while (*s2)	
 		*ptr++ = *s2++;
 	*ptr = 0;
-	return save;
+	return (save);
 }
-/*	
-	size_t	i;
-	size_t	len_s1;
-	size_t	len_s2;
-	char	*ptr;
-
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	ptr = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len_s1 + len_s2)
-	{
-		if (i < len_s1)
-			ptr[i] = s1[i];
-		else
-			ptr[i] = s2[i - len_s1];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}*/
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -100,7 +61,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		ptr = (char *)malloc(sizeof(char) * (len + 1));
 	else
 		ptr = (char *)malloc(sizeof(char) * (len_s + 1));
-	if (ptr == NULL)
+	if (!ptr)
 		return (NULL);
 	i = 0;
 	while (i < len && i + start < len_s)
@@ -111,35 +72,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
 char	*ft_strdup(const char *s1)
 {
 	char	*ptr;
 	char	*save;
 	
 	if (!s1)
-		return NULL;
-	ptr = malloc(ft_strlen(s1) + 1);
+		return (NULL);
+	ptr = (char *)malloc(ft_strlen(s1) + 1);
+	if (!ptr)
+		return (NULL);
 	save = ptr;
 	while (*s1)	
 		*ptr++ = *s1++;
 	*ptr = 0;
-	return save;
+	return (save);
 }
-/*
-char	*ft_strdup(const char *s1)
-{
-	size_t	i;
-	char	*ptr;
-	
-	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < ft_strlen(s1))
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}*/

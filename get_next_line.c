@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 02:07:02 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 02:49:04 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_next_line(int fd)
 	static char	*over;
 	char		*ret;
 	char		*ptr;
-	char		buf[BUFFER_SIZE + 1];
+	char		buf[BUFFER_SIZE + 1ul];
 	char		*tmp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)

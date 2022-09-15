@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:46:49 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 12:40:11 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:52:19 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,3 @@ char	*ft_strdup(const char *s1)
 //     system("leaks a.out");
 //     return (0);
 // }
-int main(void)
-{
-	// char	str[BUFFER_SIZE];
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * ((unsigned char)(SIZE_T_MAX)));
-	// printf("%ld\n", LONG_MAX / 100000);
-	// printf("%d\n", INT_MAX);
-	// if (variable == NULL)
-	// 	return (NULL);
-	// printf("%ld\n", INT_MAX);
-	// printf("%ld\n", INT_MAX + 1);
-	free(str);
-	// str[0] = 'a';
-	return (0);
-}	

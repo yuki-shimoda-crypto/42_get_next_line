@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 08:38:25 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 09:36:43 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static char	*ft_readline(int fd, char **over, char **ptr)
 		size = read(fd, buf, BUFFER_SIZE);
 		if (size < 0)
 			return (ft_error(&buf, over));
-		buf[size] = '\0';
+		buf[size] = 0;
 		if (size == 0)
 			break ;
 		tmp = ft_strjoin(*over, buf);

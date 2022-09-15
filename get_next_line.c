@@ -6,12 +6,11 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 12:53:04 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:57:36 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 static void	ft_free(char **ptr)
 {
@@ -155,37 +154,37 @@ char	*get_next_line(int fd)
 // }
 // #endif
 
-// // int main(void)
-// // {
-// // 	int		fd;
-// // 	char	*line;
+// int main(void)
+// {
+// 	int		fd;
+// 	char	*line;
 
-// // 	fd = open("sample0.txt", O_RDONLY);
-// // 	while (1)
-// // 	{
-// // 		line = get_next_line(fd);
-// // 		printf("%s", line);
-// // 		if (!line)
-// // 			break;
-// // 		free(line);
-// // 	}
-// // 	close(fd);
-// // 	system("leaks a.out");
-// // 	return (0);
-// // }
+// 	fd = open("sample0.txt", O_RDONLY);
+// 	while (1)
+// 	{
+// 		line = get_next_line(fd);
+// 		printf("%s", line);
+// 		if (!line)
+// 			break;
+// 		free(line);
+// 	}
+// 	close(fd);
+// 	system("leaks a.out");
+// 	return (0);
+// }
 
-// // ctrl + c or ctrl + d to stop
-// // int    main(void)
-// // {
-// //     char *txt;
+// ctrl + c or ctrl + d to stop
+// int    main(void)
+// {
+//     char *txt;
 
-// //     txt = "1";
-// //     while(txt)
-// //     {
-// //         txt = get_next_line(0);
-// //         printf("[Return:] Line: %s\n",txt);
-// //         free(txt);
-// //     }
-// //     system("leaks a.out");
-// //     return (0);
-// // }
+//     txt = "1";
+//     while(txt)
+//     {
+//         txt = get_next_line(0);
+//         printf("[Return:] Line: %s\n",txt);
+//         free(txt);
+//     }
+//     system("leaks a.out");
+//     return (0);
+// }

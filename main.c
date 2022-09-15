@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:46:49 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 12:52:19 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:57:22 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*ft_strdup(const char *s1)
 // 	int		fd;
 // 	char	*line;
 
-// 	fd = open("sample0.txt", O_RDONLY);
+// 	fd = open("sample08.txt", O_RDONLY);
 // 	while (1)
 // 	{
 // 		line = get_next_line(fd);

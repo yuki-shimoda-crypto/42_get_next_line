@@ -6,11 +6,12 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 12:57:36 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:20:01 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#define malloc ft_malloc
 
 static void	ft_free(char **ptr)
 {
@@ -105,11 +106,29 @@ char	*get_next_line(int fd)
 // #include "get_next_line.h"
 
 // #if 0
-// void	*malloc(size_t size)
+// #undef malloc
+// void	*ft_malloc(size_t size)
 // {
+// 	static int i;
+	
+// 	i++;
+// 	if (i % 2 == 0)
+// 		return(malloc(size));
 // 	(void)size;
 
 // 	return (NULL);
+// }
+// #endif
+
+// #if 0
+// #undef free
+// void	ft_free(void *p)
+// {
+// 	static int i;
+
+// 	i++;
+// 	free(p);
+// 	printf("%d\n", i);
 // }
 // #endif
 

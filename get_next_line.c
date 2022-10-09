@@ -6,7 +6,7 @@
 /*   By: yshimoda <yshimoda@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:53:14 by yshimoda          #+#    #+#             */
-/*   Updated: 2022/09/15 12:57:36 by yshimoda         ###   ########.fr       */
+/*   Updated: 2022/09/21 10:57:13 by yshimoda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ static char	*ft_readline(int fd, char **over, char **ptr, char **tmp)
 
 	buf = (char *)malloc(BUFFER_SIZE + 1ul);
 	if (!buf)
+	{
+		ft_free(*over);
 		return (NULL);
+	}
 	while (1)
 	{
 		*ptr = ft_strchr(*over, '\n');

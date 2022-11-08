@@ -1,7 +1,0 @@
-tty commandのoutputがstdio&error
-
-fflush(stdout);
-
-
-dup2()
-ulimit -a
